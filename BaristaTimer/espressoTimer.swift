@@ -9,22 +9,13 @@
 import Foundation
 import AVFoundation
 
-var a = ViewController()
-
 class EspressoTimer {
 
     var targetTimerCount = 25
     let minTimerSetting = 20
     let maxTimerSetting = 40
-    var currentTimerCount : Int {
-        didSet {
-//            print("changed value of the timer")
-        }
-    }
-    var timerIsPaused = false
+    var currentTimerCount : Int
     var timerIsGo = false
-    var secondsTimer = NSTimer()
-    let aSelector : Selector = "decreaseTimer"
 
     init () {
         currentTimerCount = targetTimerCount
@@ -48,23 +39,6 @@ class EspressoTimer {
             return currentTimerCount
         }
     }
-    
-    func startTimer() {
-        timerIsGo = true
-        timerIsPaused = false
-        secondsTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: aSelector, userInfo: nil, repeats: true)
-        
-    }
-
-    func resetTimer() {
-        timerIsGo = false
-        secondsTimer.invalidate()
-        currentTimerCount = targetTimerCount
-    }
-    
-    @objc func decreaseTimer() {
-        ViewController.updateTimerDisplay(a)
-            }
     
 }
 
