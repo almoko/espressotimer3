@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="BaristaTimer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,8 +17,101 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mPV-wm-fBV">
+                                <rect key="frame" x="233" y="201" width="133.5" height="143.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="120"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=compact">
+                                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="180"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Espresso" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iei-1D-Ptd">
+                                <rect key="frame" x="214" y="40" width="172.5" height="55"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="46"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7vf-MP-tHh">
+                                <rect key="frame" x="526" y="218" width="48" height="108"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="80"/>
+                                <state key="normal" title="&gt;">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=compact">
+                                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="100"/>
+                                </variation>
+                                <connections>
+                                    <action selector="changeCurrentTimerCount:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="atb-YO-1jV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yNL-v1-aeR">
+                                <rect key="frame" x="26" y="219" width="48" height="108"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="80"/>
+                                <state key="normal" title="&lt;">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=compact">
+                                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="100"/>
+                                </variation>
+                                <connections>
+                                    <action selector="changeCurrentTimerCount:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ePk-bJ-FHq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4jV-XU-AJu">
+                                <rect key="frame" x="267" y="509" width="66" height="51"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="32"/>
+                                <state key="normal" title="Start">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startResetButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="bux-tO-2fa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4VL-VI-sFo">
+                                <rect key="frame" x="298" y="434" width="80" height="51"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="32"/>
+                                <state key="normal" title="Reset">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startResetButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="gFu-Iy-uo5"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="4jV-XU-AJu" secondAttribute="bottom" constant="40" id="0kG-kN-kWK">
+                                <variation key="heightClass=compact" constant="20"/>
+                            </constraint>
+                            <constraint firstItem="yNL-v1-aeR" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="6GW-I0-Fbp"/>
+                            <constraint firstAttribute="centerY" secondItem="mPV-wm-fBV" secondAttribute="centerY" multiplier="1.1" id="9Iz-EY-b3B"/>
+                            <constraint firstAttribute="centerX" secondItem="mPV-wm-fBV" secondAttribute="centerX" id="Ac0-ef-qpB"/>
+                            <constraint firstAttribute="centerX" secondItem="4VL-VI-sFo" secondAttribute="centerX" id="CPO-Wz-Mwd"/>
+                            <constraint firstItem="iei-1D-Ptd" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="EuR-zx-2Zt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7vf-MP-tHh" secondAttribute="trailing" constant="10" id="JsT-bf-dpP"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="4VL-VI-sFo" secondAttribute="bottom" constant="40" id="fRx-79-ITB">
+                                <variation key="heightClass=compact" constant="20"/>
+                            </constraint>
+                            <constraint firstItem="mPV-wm-fBV" firstAttribute="centerY" secondItem="7vf-MP-tHh" secondAttribute="centerY" constant="0.25" id="i0p-EC-RIS"/>
+                            <constraint firstAttribute="centerX" secondItem="iei-1D-Ptd" secondAttribute="centerX" id="nSG-0H-cMh"/>
+                            <constraint firstAttribute="centerX" secondItem="4jV-XU-AJu" secondAttribute="centerX" id="sf8-4J-rPy"/>
+                            <constraint firstItem="yNL-v1-aeR" firstAttribute="centerY" secondItem="mPV-wm-fBV" secondAttribute="centerY" id="yrP-cj-auo"/>
+                        </constraints>
+                        <variation key="heightClass=compact">
+                            <mask key="subviews">
+                                <exclude reference="iei-1D-Ptd"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="leftButton" destination="yNL-v1-aeR" id="qO5-zJ-1IQ"/>
+                        <outlet property="resetButton" destination="4VL-VI-sFo" id="rFv-4t-UK5"/>
+                        <outlet property="rightButton" destination="7vf-MP-tHh" id="kdA-Ez-uBR"/>
+                        <outlet property="startButton" destination="4jV-XU-AJu" id="J8L-Xn-VYD"/>
+                        <outlet property="timerDisplay" destination="mPV-wm-fBV" id="sv3-7x-3Xe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

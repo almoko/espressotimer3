@@ -13,6 +13,7 @@
 		FA3D9F3F1B8224F800ADC700 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA3D9F3E1B8224F800ADC700 /* Images.xcassets */; };
 		FA3D9F421B8224F800ADC700 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA3D9F401B8224F800ADC700 /* LaunchScreen.xib */; };
 		FA3D9F4E1B8224F800ADC700 /* BaristaTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3D9F4D1B8224F800ADC700 /* BaristaTimerTests.swift */; };
+		FA3D9F581B822D9700ADC700 /* espressoTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3D9F571B822D9700ADC700 /* espressoTimer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		FA3D9F471B8224F800ADC700 /* BaristaTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BaristaTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA3D9F4C1B8224F800ADC700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA3D9F4D1B8224F800ADC700 /* BaristaTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaristaTimerTests.swift; sourceTree = "<group>"; };
+		FA3D9F571B822D9700ADC700 /* espressoTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = espressoTimer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				FA3D9F371B8224F800ADC700 /* AppDelegate.swift */,
 				FA3D9F391B8224F800ADC700 /* ViewController.swift */,
 				FA3D9F3B1B8224F800ADC700 /* Main.storyboard */,
+				FA3D9F571B822D9700ADC700 /* espressoTimer.swift */,
 				FA3D9F3E1B8224F800ADC700 /* Images.xcassets */,
 				FA3D9F401B8224F800ADC700 /* LaunchScreen.xib */,
 				FA3D9F351B8224F800ADC700 /* Supporting Files */,
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA3D9F3A1B8224F800ADC700 /* ViewController.swift in Sources */,
+				FA3D9F581B822D9700ADC700 /* espressoTimer.swift in Sources */,
 				FA3D9F381B8224F800ADC700 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
