@@ -27,9 +27,9 @@
                                     <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="180"/>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Espresso" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iei-1D-Ptd">
-                                <rect key="frame" x="214" y="40" width="172.5" height="55"/>
-                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="46"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Espresso Timer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iei-1D-Ptd">
+                                <rect key="frame" x="171" y="40" width="258.5" height="48"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -69,8 +69,8 @@
                                     <action selector="startResetButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="bux-tO-2fa"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4VL-VI-sFo">
-                                <rect key="frame" x="298" y="434" width="80" height="51"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4VL-VI-sFo">
+                                <rect key="frame" x="260" y="509" width="80" height="51"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="32"/>
                                 <state key="normal" title="Reset">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -85,12 +85,16 @@
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="4jV-XU-AJu" secondAttribute="bottom" constant="40" id="0kG-kN-kWK">
                                 <variation key="heightClass=compact" constant="20"/>
                             </constraint>
-                            <constraint firstItem="yNL-v1-aeR" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="6GW-I0-Fbp"/>
+                            <constraint firstItem="yNL-v1-aeR" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="6GW-I0-Fbp">
+                                <variation key="heightClass=compact" constant="40"/>
+                            </constraint>
                             <constraint firstAttribute="centerY" secondItem="mPV-wm-fBV" secondAttribute="centerY" multiplier="1.1" id="9Iz-EY-b3B"/>
                             <constraint firstAttribute="centerX" secondItem="mPV-wm-fBV" secondAttribute="centerX" id="Ac0-ef-qpB"/>
                             <constraint firstAttribute="centerX" secondItem="4VL-VI-sFo" secondAttribute="centerX" id="CPO-Wz-Mwd"/>
                             <constraint firstItem="iei-1D-Ptd" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="EuR-zx-2Zt"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="7vf-MP-tHh" secondAttribute="trailing" constant="10" id="JsT-bf-dpP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7vf-MP-tHh" secondAttribute="trailing" constant="10" id="JsT-bf-dpP">
+                                <variation key="heightClass=compact" constant="40"/>
+                            </constraint>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="4VL-VI-sFo" secondAttribute="bottom" constant="40" id="fRx-79-ITB">
                                 <variation key="heightClass=compact" constant="20"/>
                             </constraint>

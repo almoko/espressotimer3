@@ -35,9 +35,9 @@ class ViewController: UIViewController {
         switch sender.currentTitle! {
         case "Start" :
             rightButton.enabled = false
-            rightButton.alpha = 0.3
+            rightButton.alpha = 0.2
             leftButton.enabled = false
-            leftButton.alpha = 0.3
+            leftButton.alpha = 0.2
             startButton.enabled = false
             startButton.alpha = 0
             resetButton.enabled = true
@@ -45,11 +45,11 @@ class ViewController: UIViewController {
             startTimer()
         
         case "Reset" :
+            AudioServicesPlaySystemSound(1111)
             resetTimer()
             
         default : break
         }
-
     }
     
     @objc func decreaseTimer() {
@@ -58,15 +58,13 @@ class ViewController: UIViewController {
 
         switch esTimer.currentTimerCount {
             
-        case -1 : resetTimer()
-            
+        case -1 :
+            resetTimer()
         case 0 :
             timerDisplay.textColor = UIColor.redColor()
             AudioServicesPlaySystemSound(1116)
-            
         case 1...3 :
             AudioServicesPlaySystemSound(1115)
-            
         default :
             timerDisplay.text = String(esTimer.currentTimerCount)
         }
@@ -75,6 +73,7 @@ class ViewController: UIViewController {
     }
     
     func startTimer() {
+        AudioServicesPlaySystemSound(1110)
         esTimer.timerIsGo = true
         secondsTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: aSelector, userInfo: nil, repeats: true)
     }
@@ -93,7 +92,6 @@ class ViewController: UIViewController {
         esTimer.currentTimerCount = esTimer.targetTimerCount
         timerDisplay.textColor = UIColor.blackColor()
         timerDisplay.text = String(esTimer.targetTimerCount)
-
     }
 
     override func viewDidLoad() {

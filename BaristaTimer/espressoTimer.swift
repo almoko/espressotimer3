@@ -22,6 +22,7 @@ class EspressoTimer {
     }
 
     func timerPlus() -> Int {
+        AudioServicesPlaySystemSound(1057)
         if !timerIsGo && currentTimerCount < maxTimerSetting {
             targetTimerCount = ++currentTimerCount
         return targetTimerCount
@@ -32,6 +33,7 @@ class EspressoTimer {
         
     }
     func timerMinus() -> Int {
+        AudioServicesPlaySystemSound(1057)
         if !timerIsGo && currentTimerCount > minTimerSetting {
             targetTimerCount = --currentTimerCount
             return targetTimerCount
