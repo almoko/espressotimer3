@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:BaristaTimer.xcodeproj">
+      location = "self:/Users/alex/Documents/iOs Development/Apps/BaristaTimer/EspressoTimer.xcodeproj">
    </FileRef>
 </Workspace>
