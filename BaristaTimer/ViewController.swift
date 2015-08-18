@@ -11,7 +11,7 @@ import AVFoundation
 
 var esTimer = EspressoTimer()
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var secondsTimer = NSTimer()
     let aSelector : Selector = "decreaseTimer"
@@ -30,18 +30,16 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func tapTimerDisplay(sender: UITapGestureRecognizer) {
+        if !esTimer.timerIsGo {
+            startTimer()
+        }
+    }
+    
     @IBAction func startResetButton(sender: UIButton) {
 
         switch sender.currentTitle! {
         case "Start" :
-            rightButton.enabled = false
-            rightButton.alpha = 0.2
-            leftButton.enabled = false
-            leftButton.alpha = 0.2
-            startButton.enabled = false
-            startButton.alpha = 0
-            resetButton.enabled = true
-            resetButton.alpha = 1
             startTimer()
         
         case "Reset" :
@@ -74,6 +72,14 @@ class ViewController: UIViewController {
     
     func startTimer() {
         AudioServicesPlaySystemSound(1110)
+        rightButton.enabled = false
+        rightButton.alpha = 0.2
+        leftButton.enabled = false
+        leftButton.alpha = 0.2
+        startButton.enabled = false
+        startButton.alpha = 0
+        resetButton.enabled = true
+        resetButton.alpha = 1
         esTimer.timerIsGo = true
         secondsTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: aSelector, userInfo: nil, repeats: true)
     }
