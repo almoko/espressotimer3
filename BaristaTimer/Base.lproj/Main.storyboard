@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sQI-1h-UTi">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Espresso-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="BaristaTimer" customModuleProvider="target" sceneMemberID="viewController">
@@ -63,7 +63,7 @@
                                     <action selector="changeCurrentTimerCount:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ePk-bJ-FHq"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4VL-VI-sFo">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4VL-VI-sFo">
                                 <rect key="frame" x="250.5" y="490" width="99" height="60"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
                                 <state key="normal" title="Reset">
@@ -73,7 +73,7 @@
                                     <action selector="startResetButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="gFu-Iy-uo5"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4jV-XU-AJu">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4jV-XU-AJu">
                                 <rect key="frame" x="259" y="490" width="82" height="60"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
                                 <state key="normal" title="Start">
@@ -113,6 +113,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Espresso" image="espressoIcon" id="hl3-V4-DYE"/>
                     <connections>
                         <outlet property="leftButton" destination="yNL-v1-aeR" id="qO5-zJ-1IQ"/>
                         <outlet property="resetButton" destination="4VL-VI-sFo" id="rFv-4t-UK5"/>
@@ -128,6 +129,49 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="1192" y="265"/>
+        </scene>
+        <!--Pourover-->
+        <scene sceneID="7xI-oY-u3c">
+            <objects>
+                <viewController id="M1U-9o-nwc" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rgp-EF-Dqe"/>
+                        <viewControllerLayoutGuide type="bottom" id="dPc-0h-1Et"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aNM-sW-geA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Pourover" image="V60Icon" id="3ke-ds-Rdd"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B0o-ay-Rtf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1192" y="1255"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="A6y-LV-Bjo">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="sQI-1h-UTi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="pPf-FE-MlY">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="HuZ-lY-mzV"/>
+                        <segue destination="M1U-9o-nwc" kind="relationship" relationship="viewControllers" id="IoG-t3-Mbe"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mN7-sE-Vdl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="380" y="453"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="V60Icon" width="25" height="25"/>
+        <image name="espressoIcon" width="25" height="25"/>
+    </resources>
 </document>
