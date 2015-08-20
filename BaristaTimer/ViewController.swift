@@ -108,6 +108,5 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         resetButton.enabled = false
         timerDisplay.text = String(esTimer.targetTimerCount)
     }
-
 }
 

@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mPV-wm-fBV">
-                                <rect key="frame" x="233" y="201" width="133.5" height="143.5"/>
+                                <rect key="frame" x="233" y="159" width="133.5" height="143.5"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="120"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -31,14 +31,14 @@
                                     <outletCollection property="gestureRecognizers" destination="BSW-Dy-sjQ" appends="YES" id="dlK-V7-M1q"/>
                                 </connections>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Espresso Timer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iei-1D-Ptd">
-                                <rect key="frame" x="177" y="40" width="245.5" height="45.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="38"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Espresso" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iei-1D-Ptd">
+                                <rect key="frame" x="224.5" y="50" width="151" height="45.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="38"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7vf-MP-tHh">
-                                <rect key="frame" x="526" y="218" width="48" height="108"/>
+                                <rect key="frame" x="526" y="176" width="48" height="108"/>
                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="80"/>
                                 <state key="normal" title="&gt;">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -51,7 +51,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yNL-v1-aeR">
-                                <rect key="frame" x="26" y="219" width="48" height="108"/>
+                                <rect key="frame" x="26" y="177" width="48" height="108"/>
                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="80"/>
                                 <state key="normal" title="&lt;">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -63,44 +63,58 @@
                                     <action selector="changeCurrentTimerCount:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ePk-bJ-FHq"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4VL-VI-sFo">
-                                <rect key="frame" x="250.5" y="490" width="99" height="60"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4VL-VI-sFo">
+                                <rect key="frame" x="250" y="441" width="99" height="60"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
                                 <state key="normal" title="Reset">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="heightClass=compact">
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
+                                </variation>
                                 <connections>
                                     <action selector="startResetButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="gFu-Iy-uo5"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4jV-XU-AJu">
-                                <rect key="frame" x="259" y="490" width="82" height="60"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4jV-XU-AJu">
+                                <rect key="frame" x="259" y="441" width="82" height="60"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
                                 <state key="normal" title="Start">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="heightClass=compact">
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
+                                </variation>
                                 <connections>
                                     <action selector="startResetButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="bux-tO-2fa"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TIMER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TH2-5z-yXF">
+                                <rect key="frame" x="271" y="95" width="57.5" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="4jV-XU-AJu" secondAttribute="bottom" constant="50" id="0kG-kN-kWK">
-                                <variation key="heightClass=compact" constant="20"/>
+                                <variation key="heightClass=compact" constant="15"/>
                             </constraint>
                             <constraint firstItem="yNL-v1-aeR" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="6GW-I0-Fbp">
                                 <variation key="heightClass=compact" constant="40"/>
                             </constraint>
-                            <constraint firstAttribute="centerY" secondItem="mPV-wm-fBV" secondAttribute="centerY" multiplier="1.1" id="9Iz-EY-b3B"/>
+                            <constraint firstAttribute="centerY" secondItem="mPV-wm-fBV" secondAttribute="centerY" multiplier="1.3" id="9Iz-EY-b3B"/>
                             <constraint firstAttribute="centerX" secondItem="mPV-wm-fBV" secondAttribute="centerX" id="Ac0-ef-qpB"/>
                             <constraint firstAttribute="centerX" secondItem="4VL-VI-sFo" secondAttribute="centerX" id="CPO-Wz-Mwd"/>
-                            <constraint firstItem="iei-1D-Ptd" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="EuR-zx-2Zt"/>
+                            <constraint firstItem="iei-1D-Ptd" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="30" id="EuR-zx-2Zt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7vf-MP-tHh" secondAttribute="trailing" constant="10" id="JsT-bf-dpP">
                                 <variation key="heightClass=compact" constant="40"/>
                             </constraint>
+                            <constraint firstAttribute="centerX" secondItem="TH2-5z-yXF" secondAttribute="centerX" id="Kep-ud-bVt"/>
+                            <constraint firstItem="TH2-5z-yXF" firstAttribute="top" secondItem="iei-1D-Ptd" secondAttribute="bottom" id="Mmb-k9-n48"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="4VL-VI-sFo" secondAttribute="bottom" constant="50" id="fRx-79-ITB">
-                                <variation key="heightClass=compact" constant="20"/>
+                                <variation key="heightClass=compact" constant="15"/>
                             </constraint>
                             <constraint firstItem="mPV-wm-fBV" firstAttribute="centerY" secondItem="7vf-MP-tHh" secondAttribute="centerY" constant="0.25" id="i0p-EC-RIS"/>
                             <constraint firstAttribute="centerX" secondItem="iei-1D-Ptd" secondAttribute="centerX" id="nSG-0H-cMh"/>
@@ -110,6 +124,7 @@
                         <variation key="heightClass=compact">
                             <mask key="subviews">
                                 <exclude reference="iei-1D-Ptd"/>
+                                <exclude reference="TH2-5z-yXF"/>
                             </mask>
                         </variation>
                     </view>
@@ -129,12 +144,12 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1192" y="265"/>
+            <point key="canvasLocation" x="1258" y="354"/>
         </scene>
         <!--Pourover-->
         <scene sceneID="7xI-oY-u3c">
             <objects>
-                <viewController id="M1U-9o-nwc" sceneMemberID="viewController">
+                <viewController id="M1U-9o-nwc" customClass="PouroverViewController" customModule="BaristaTimer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rgp-EF-Dqe"/>
                         <viewControllerLayoutGuide type="bottom" id="dPc-0h-1Et"/>
@@ -142,13 +157,100 @@
                     <view key="view" contentMode="scaleToFill" id="aNM-sW-geA">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pourover" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snN-li-EcU">
+                                <rect key="frame" x="226" y="50" width="147" height="45.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="38"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8uX-iI-atQ">
+                                <rect key="frame" x="183" y="159" width="234" height="143.5"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="120"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=compact">
+                                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="160"/>
+                                </variation>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="yOE-0g-i18" appends="YES" id="E7W-js-QwU"/>
+                                </connections>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RQP-mo-Di0">
+                                <rect key="frame" x="259" y="441" width="82" height="60"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
+                                <state key="normal" title="Start">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=compact">
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="startResetButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="PtU-zL-Jxr"/>
+                                    <action selector="startTimerButton" destination="M1U-9o-nwc" eventType="touchUpInside" id="0Tm-DO-Pkt"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TIMER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gz-IM-Lby">
+                                <rect key="frame" x="271" y="95" width="57.5" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rti-0T-XK3">
+                                <rect key="frame" x="250.5" y="441" width="99" height="60"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
+                                <state key="normal" title="Reset">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=compact">
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="resetTimerButton" destination="M1U-9o-nwc" eventType="touchUpInside" id="snl-1f-xoY"/>
+                                    <action selector="startResetButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="9eM-rO-6lY"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="8uX-iI-atQ" secondAttribute="centerX" id="2BS-4g-6fI"/>
+                            <constraint firstAttribute="centerX" secondItem="snN-li-EcU" secondAttribute="centerX" id="8dv-Fc-zGn"/>
+                            <constraint firstItem="dPc-0h-1Et" firstAttribute="top" secondItem="rti-0T-XK3" secondAttribute="bottom" constant="50" id="BWn-bM-GoS">
+                                <variation key="heightClass=compact" constant="15"/>
+                            </constraint>
+                            <constraint firstItem="snN-li-EcU" firstAttribute="top" secondItem="rgp-EF-Dqe" secondAttribute="bottom" constant="30" id="UsT-5y-MyL"/>
+                            <constraint firstAttribute="centerY" secondItem="8uX-iI-atQ" secondAttribute="centerY" multiplier="1.3" id="VWZ-IZ-i0P"/>
+                            <constraint firstAttribute="centerX" secondItem="8gz-IM-Lby" secondAttribute="centerX" id="Wxb-pm-87v"/>
+                            <constraint firstItem="8gz-IM-Lby" firstAttribute="top" secondItem="snN-li-EcU" secondAttribute="bottom" id="Xpp-oI-ndt"/>
+                            <constraint firstItem="dPc-0h-1Et" firstAttribute="top" secondItem="RQP-mo-Di0" secondAttribute="bottom" constant="50" id="aNL-bL-6nq">
+                                <variation key="heightClass=compact" constant="15"/>
+                            </constraint>
+                            <constraint firstAttribute="centerX" secondItem="rti-0T-XK3" secondAttribute="centerX" id="dWi-rf-89T"/>
+                            <constraint firstAttribute="centerX" secondItem="RQP-mo-Di0" secondAttribute="centerX" id="vsv-WP-ahF"/>
+                        </constraints>
+                        <variation key="heightClass=compact">
+                            <mask key="subviews">
+                                <exclude reference="snN-li-EcU"/>
+                                <exclude reference="8gz-IM-Lby"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Pourover" image="V60Icon" id="3ke-ds-Rdd"/>
+                    <tabBarItem key="tabBarItem" title="Pourover" image="pourover" id="3ke-ds-Rdd"/>
+                    <connections>
+                        <outlet property="displayTimer" destination="8uX-iI-atQ" id="NEr-x8-vtg"/>
+                        <outlet property="resetBtn" destination="rti-0T-XK3" id="3fW-D1-t5s"/>
+                        <outlet property="startBtn" destination="RQP-mo-Di0" id="o7h-tu-NL1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B0o-ay-Rtf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="yOE-0g-i18">
+                    <connections>
+                        <action selector="startTimerButton" destination="M1U-9o-nwc" id="SjY-52-oc4"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1192" y="1255"/>
+            <point key="canvasLocation" x="1258" y="1272"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="A6y-LV-Bjo">
@@ -171,7 +273,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="V60Icon" width="25" height="25"/>
         <image name="espressoIcon" width="25" height="25"/>
+        <image name="pourover" width="25" height="25"/>
     </resources>
 </document>
