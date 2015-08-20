@@ -23,6 +23,7 @@ class PouroverViewController: UIViewController {
     @IBAction func startTimerButton() {
         
         if !pourOver.IsGo {
+            UIApplication.sharedApplication().idleTimerDisabled = true
             secondsTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: aSel, userInfo: nil, repeats: true)
             startBtn.enabled = false
             startBtn.alpha = 0
@@ -44,6 +45,7 @@ class PouroverViewController: UIViewController {
         displayTimer.text = "\(pourOver.currentMins):0\(pourOver.currentSecs)"
         displayTimer.textColor = UIColor.blackColor()
         AudioServicesPlaySystemSound(1111)
+        UIApplication.sharedApplication().idleTimerDisabled = false
     }
     
     @objc func increaseTimer() {
