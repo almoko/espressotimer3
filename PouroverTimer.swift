@@ -10,7 +10,7 @@ import Foundation
 
 class PouroverTimer {
     
-    var maxTimerMins = 2
+    var maxTimerMins = 4
     var warningSeconds = [30, 60, 120, 180, 240]
     var currentTimer = 0 {
         didSet {

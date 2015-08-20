@@ -71,6 +71,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func startTimer() {
+        UIApplication.sharedApplication().idleTimerDisabled = true
         AudioServicesPlaySystemSound(1110)
         rightButton.enabled = false
         rightButton.alpha = 0.2
@@ -85,6 +86,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func resetTimer() {
+        UIApplication.sharedApplication().idleTimerDisabled = false
         rightButton.enabled = true
         rightButton.alpha = 1
         leftButton.enabled = true
