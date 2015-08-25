@@ -11,7 +11,7 @@ import Foundation
 class PouroverTimer {
     
     var maxTimerMins = 4
-    var warningSeconds = [30, 60, 120, 180, 240]
+    var warningSeconds = [60, 120, 180, 240]
     var currentTimer = 0 {
         didSet {
             currentMins = Int(currentTimer / 60)
@@ -21,4 +21,10 @@ class PouroverTimer {
     var IsGo = false
     var currentMins = 0
     var currentSecs = 0
+}
+
+class BloomingTimer {
+    var maxBloomSeconds = 30
+    var currentTimer = 0
+    var isGo = false
 }

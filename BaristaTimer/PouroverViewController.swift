@@ -14,11 +14,26 @@ var secondsTimer = NSTimer()
 class PouroverViewController: UIViewController {
     
     let aSel : Selector = "increaseTimer"
+    let aBloomSel : Selector = "increaseBloomTimer"
     var pourOver = PouroverTimer()
+    var bloomTimer = BloomingTimer()
     
     @IBOutlet weak var displayTimer: UILabel!
     @IBOutlet weak var resetBtn: UIButton!
     @IBOutlet weak var startBtn: UIButton!
+    @IBOutlet weak var bloomStartButton: UIButton!
+    @IBOutlet weak var bloomTimerDisplay: UILabel!
+    
+    // Enabling the blooming timer
+    
+    @IBAction func bloomStart() {
+        bloomTimer.isGo = true
+        bloomStartButton.hidden = true
+        bloomStartButton.enabled = false
+        bloomTimerDisplay.hidden = false
+    }
+    
+    // Initialize the Pour Over Timer
     
     @IBAction func startTimerButton() {
         
@@ -31,6 +46,9 @@ class PouroverViewController: UIViewController {
             resetBtn.alpha = 1
             pourOver.IsGo = true
             AudioServicesPlaySystemSound(1110)
+            
+            bloomStartButton.enabled = true
+            bloomStartButton.hidden = false
         }
     }
     
@@ -46,11 +64,20 @@ class PouroverViewController: UIViewController {
         displayTimer.textColor = UIColor.blackColor()
         AudioServicesPlaySystemSound(1111)
         UIApplication.sharedApplication().idleTimerDisabled = false
+        
+        bloomTimerDisplay.hidden = true
+        bloomTimerDisplay.text = "00"
+        bloomTimer.isGo = false
+        bloomTimer.currentTimer = 0
+        
+        bloomStartButton.enabled = false
+        bloomStartButton.hidden = true
+        
     }
     
     @objc func increaseTimer() {
         
-        if pourOver.currentTimer < pourOver.maxTimerMins*60 {
+        if pourOver.currentTimer < pourOver.maxTimerMins*60+30 {
             
             pourOver.currentTimer++
             
@@ -70,6 +97,36 @@ class PouroverViewController: UIViewController {
                 }
             }
             
+            
+            // Blooming Timer Works:
+            
+            if bloomTimer.isGo && bloomTimer.currentTimer < bloomTimer.maxBloomSeconds {
+                
+                // Increase the blooming timer seconds by 1
+                
+                bloomTimer.currentTimer++
+                
+                // Update the blooming timer display accordingly
+                
+                if bloomTimer.currentTimer < 10 {
+                    bloomTimerDisplay.text = "0\(bloomTimer.currentTimer)"
+                } else {
+                    bloomTimerDisplay.text = "\(bloomTimer.currentTimer)"
+                }
+                
+                if bloomTimer.currentTimer == bloomTimer.maxBloomSeconds {
+                    AudioServicesPlaySystemSound(1111)
+//                    bloomTimerDisplay.textColor = UIColor.redColor()
+                }
+                
+            } else if bloomTimer.isGo {
+                bloomTimer.isGo = false
+                bloomTimerDisplay.hidden = true
+                bloomTimer.currentTimer = 0
+//                bloomTimerDisplay.textColor = UIColor.blackColor()
+            }
+            
+            
         } else {
             resetTimerButton()
         }
@@ -79,7 +136,21 @@ class PouroverViewController: UIViewController {
         super.viewDidLoad()
         resetBtn.alpha = 0
         resetBtn.enabled = false
-
+        
+        bloomStartButton.layer.cornerRadius = 10
+        bloomStartButton.backgroundColor = UIColor.clearColor()
+        bloomStartButton.layer.borderWidth = 1
+        bloomStartButton.layer.borderColor = UIColor.grayColor().CGColor
+        bloomStartButton.hidden = true
+        bloomStartButton.enabled = false
+        
+        bloomTimerDisplay.hidden = true
+//        bloomTimerDisplay.layer.cornerRadius = 35
+//        bloomTimerDisplay.layer.borderWidth = 1
+//        bloomTimerDisplay.backgroundColor = UIColor.clearColor()
+//        bloomTimerDisplay.layer.borderColor = UIColor.grayColor().CGColor
+        bloomTimerDisplay.textColor = UIColor.grayColor()
+        
         // Do any additional setup after loading the view.
     }
 

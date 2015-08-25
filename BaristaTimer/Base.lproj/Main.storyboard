@@ -89,12 +89,6 @@
                                     <action selector="startResetButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="bux-tO-2fa"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TIMER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TH2-5z-yXF">
-                                <rect key="frame" x="271" y="95" width="57.5" height="24"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -111,8 +105,6 @@
                             <constraint firstAttribute="trailingMargin" secondItem="7vf-MP-tHh" secondAttribute="trailing" constant="10" id="JsT-bf-dpP">
                                 <variation key="heightClass=compact" constant="40"/>
                             </constraint>
-                            <constraint firstAttribute="centerX" secondItem="TH2-5z-yXF" secondAttribute="centerX" id="Kep-ud-bVt"/>
-                            <constraint firstItem="TH2-5z-yXF" firstAttribute="top" secondItem="iei-1D-Ptd" secondAttribute="bottom" id="Mmb-k9-n48"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="4VL-VI-sFo" secondAttribute="bottom" constant="50" id="fRx-79-ITB">
                                 <variation key="heightClass=compact" constant="15"/>
                             </constraint>
@@ -124,7 +116,6 @@
                         <variation key="heightClass=compact">
                             <mask key="subviews">
                                 <exclude reference="iei-1D-Ptd"/>
-                                <exclude reference="TH2-5z-yXF"/>
                             </mask>
                         </variation>
                     </view>
@@ -191,14 +182,8 @@
                                     <action selector="startTimerButton" destination="M1U-9o-nwc" eventType="touchUpInside" id="0Tm-DO-Pkt"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TIMER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gz-IM-Lby">
-                                <rect key="frame" x="271" y="95" width="57.5" height="24"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rti-0T-XK3">
-                                <rect key="frame" x="250.5" y="441" width="99" height="60"/>
+                                <rect key="frame" x="250" y="441" width="99" height="60"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
                                 <state key="normal" title="Reset">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -211,33 +196,86 @@
                                     <action selector="startResetButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="9eM-rO-6lY"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ayt-dw-IcW">
+                                <rect key="frame" x="250" y="381" width="100" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="1Zb-lx-5XF"/>
+                                    <constraint firstAttribute="width" constant="100" id="80Q-NA-IPJ"/>
+                                </constraints>
+                                <state key="normal" title="BLOOMING">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=compact" ambiguous="YES">
+                                    <rect key="frame" x="377" y="292" width="100" height="40"/>
+                                </variation>
+                                <connections>
+                                    <action selector="bloomStart" destination="M1U-9o-nwc" eventType="touchUpInside" id="6eL-sL-rKf"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="00" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDy-8x-nFj">
+                                <rect key="frame" x="265" y="366" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="CXn-Qp-Gh4"/>
+                                    <constraint firstAttribute="width" constant="70" id="GjR-9c-ADA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="34"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=compact" ambiguous="YES">
+                                    <rect key="frame" x="392" y="277" width="70" height="70"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="8uX-iI-atQ" secondAttribute="centerX" id="2BS-4g-6fI"/>
+                            <constraint firstAttribute="centerX" secondItem="8uX-iI-atQ" secondAttribute="centerX" priority="750" id="2BS-4g-6fI"/>
+                            <constraint firstItem="Ayt-dw-IcW" firstAttribute="centerY" secondItem="rti-0T-XK3" secondAttribute="centerY" id="46a-l9-SST"/>
+                            <constraint firstItem="Ayt-dw-IcW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rti-0T-XK3" secondAttribute="trailing" constant="40" id="8TS-U2-CL6"/>
                             <constraint firstAttribute="centerX" secondItem="snN-li-EcU" secondAttribute="centerX" id="8dv-Fc-zGn"/>
                             <constraint firstItem="dPc-0h-1Et" firstAttribute="top" secondItem="rti-0T-XK3" secondAttribute="bottom" constant="50" id="BWn-bM-GoS">
                                 <variation key="heightClass=compact" constant="15"/>
                             </constraint>
+                            <constraint firstItem="Ayt-dw-IcW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="8uX-iI-atQ" secondAttribute="bottom" priority="250" constant="29.5" id="RpH-Ti-9eW"/>
                             <constraint firstItem="snN-li-EcU" firstAttribute="top" secondItem="rgp-EF-Dqe" secondAttribute="bottom" constant="30" id="UsT-5y-MyL"/>
                             <constraint firstAttribute="centerY" secondItem="8uX-iI-atQ" secondAttribute="centerY" multiplier="1.3" id="VWZ-IZ-i0P"/>
-                            <constraint firstAttribute="centerX" secondItem="8gz-IM-Lby" secondAttribute="centerX" id="Wxb-pm-87v"/>
-                            <constraint firstItem="8gz-IM-Lby" firstAttribute="top" secondItem="snN-li-EcU" secondAttribute="bottom" id="Xpp-oI-ndt"/>
+                            <constraint firstItem="FDy-8x-nFj" firstAttribute="centerX" secondItem="Ayt-dw-IcW" secondAttribute="centerX" id="Yue-4y-KYa"/>
                             <constraint firstItem="dPc-0h-1Et" firstAttribute="top" secondItem="RQP-mo-Di0" secondAttribute="bottom" constant="50" id="aNL-bL-6nq">
                                 <variation key="heightClass=compact" constant="15"/>
                             </constraint>
                             <constraint firstAttribute="centerX" secondItem="rti-0T-XK3" secondAttribute="centerX" id="dWi-rf-89T"/>
+                            <constraint firstItem="rti-0T-XK3" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ayt-dw-IcW" secondAttribute="bottom" priority="750" constant="20" id="fVD-fN-uup"/>
+                            <constraint firstAttribute="centerX" secondItem="Ayt-dw-IcW" secondAttribute="centerX" id="fXc-d7-Zg3"/>
+                            <constraint firstItem="FDy-8x-nFj" firstAttribute="centerY" secondItem="Ayt-dw-IcW" secondAttribute="centerY" id="q1o-wE-2SU"/>
+                            <constraint firstItem="Ayt-dw-IcW" firstAttribute="centerX" secondItem="8uX-iI-atQ" secondAttribute="centerX" id="rnh-mO-aaI"/>
                             <constraint firstAttribute="centerX" secondItem="RQP-mo-Di0" secondAttribute="centerX" id="vsv-WP-ahF"/>
+                            <constraint firstItem="Ayt-dw-IcW" firstAttribute="top" secondItem="8uX-iI-atQ" secondAttribute="bottom" constant="30" id="z5i-Ud-41n"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="46a-l9-SST"/>
+                                <exclude reference="8TS-U2-CL6"/>
+                                <exclude reference="fXc-d7-Zg3"/>
+                                <exclude reference="z5i-Ud-41n"/>
+                            </mask>
+                        </variation>
                         <variation key="heightClass=compact">
                             <mask key="subviews">
                                 <exclude reference="snN-li-EcU"/>
-                                <exclude reference="8gz-IM-Lby"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="46a-l9-SST"/>
+                                <include reference="8TS-U2-CL6"/>
+                                <exclude reference="RpH-Ti-9eW"/>
+                                <exclude reference="rnh-mO-aaI"/>
+                                <exclude reference="fVD-fN-uup"/>
                             </mask>
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Pourover" image="pourover" id="3ke-ds-Rdd"/>
                     <connections>
+                        <outlet property="bloomStartButton" destination="Ayt-dw-IcW" id="ksR-qX-RfA"/>
+                        <outlet property="bloomTimerDisplay" destination="FDy-8x-nFj" id="gCd-uh-4Um"/>
                         <outlet property="displayTimer" destination="8uX-iI-atQ" id="NEr-x8-vtg"/>
                         <outlet property="resetBtn" destination="rti-0T-XK3" id="3fW-D1-t5s"/>
                         <outlet property="startBtn" destination="RQP-mo-Di0" id="o7h-tu-NL1"/>
@@ -250,7 +288,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1258" y="1272"/>
+            <point key="canvasLocation" x="1209" y="1440"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="A6y-LV-Bjo">
