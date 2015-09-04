@@ -19,22 +19,9 @@ class ExpertViewController: UIViewController {
     @IBOutlet weak var buttonLess: UIButton!
     @IBOutlet weak var timerDisplay: UILabel!
     
-    struct espressoShot {
-        var dose : Float
-        var yield : Float
-        var time : Int
-//        var timeStamp : Date()
-        var blendName : String?
-        
-        init () {
-            self.dose = 0
-            self.yield = 0
-            self.time = 0
-        }
-    }
+//    var shots : [espressoShot]
     
     var origXgrams : CGFloat = 0
-    
     var doseGrams : Float = 18 {
         didSet {
             minYield = doseGrams * 1.8
@@ -55,6 +42,8 @@ class ExpertViewController: UIViewController {
     var targetTimerSetting = 25
     
     var lastShot = espressoShot()
+    
+    var shots = [espressoShot]()
     
     @IBAction func setTimerTarget(sender: UIButton) {
         
@@ -81,6 +70,17 @@ class ExpertViewController: UIViewController {
         
         timerDisplay.text = String(currentTimer)
         
+        if currentTimer == targetTimerSetting {
+            timerDisplay.textColor = UIColor.redColor()
+            //play final sound here
+        } else {
+            timerDisplay.textColor = UIColor.blackColor()
+        }
+        
+        if currentTimer >= targetTimerSetting-3 && currentTimer < targetTimerSetting {
+            // play warning sounds here
+        }
+        
     }
     
     func stopTimer () {
@@ -101,13 +101,26 @@ class ExpertViewController: UIViewController {
         lastShot.time = currentTimer
         lastShot.yield = 0
         
-        print(lastShot)
+        // Play STOP sound
         
+        print(lastShot)
+        shots.append(lastShot)
+        print("Total shots: \(shots.count)")
+        
+        // Show YIELD reading Finalize VC
+        
+        let finalizeVC = self.storyboard?.instantiateViewControllerWithIdentifier("finalizeShotVC")
+        
+        self.presentViewController(finalizeVC!, animated: true, completion: {})
+
     }
     
     @IBAction func tapOnTimer(sender: UITapGestureRecognizer) {
         
         if !timerIsGo {
+            
+            // play START sound
+            
             timerDisplay.text = "0"
             currentTimer = 0
             timerIsGo = true
@@ -115,8 +128,8 @@ class ExpertViewController: UIViewController {
             
             buttonLess.enabled = false
             buttonMore.enabled = false
-            buttonLess.alpha = 0.3
-            buttonMore.alpha = 0.3
+            buttonLess.alpha = 0.6
+            buttonMore.alpha = 0.6
             
         } else {
             stopTimer()
@@ -127,16 +140,15 @@ class ExpertViewController: UIViewController {
     @IBAction func panGrams(sender: UIPanGestureRecognizer) {
        
         switch sender.state.rawValue {
-        case 1 : origXgrams = gramScalGr.frame.origin.x
+        case 1 :
+            origXgrams = gramScalGr.frame.origin.x
+            
         case 2 :
             let offsetX = sender.translationInView(sender.view).x
             let newX = origXgrams + offsetX
-
             if newX <= 0 && gramScalGr.frame.maxX > gramsView.frame.maxX-offsetX {
                 gramScalGr.frame = CGRect(x: newX, y: gramScalGr.frame.origin.y, width: gramScalGr.frame.width, height: gramScalGr.frame.height)
-                
                 doseGrams = currentGrams - Float(offsetX) / oneGram
-                
                 gramsInDisplay.text = String(format: "%.01f", doseGrams)
                 
         }
@@ -145,20 +157,16 @@ class ExpertViewController: UIViewController {
             targetYieldMax.text = String(format: "%.01f", maxYield)
             currentGrams = doseGrams
         default : break
-            
     }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         oneGram = Float(gramScalGr.frame.width / 40)
-        print("oneGram: \(oneGram)")
         doseGrams = 20
+        targetYieldMin.text = String(format: "%.01f", minYield)
+        targetYieldMax.text = String(format: "%.01f", maxYield)
         gramsInDisplay.text = String(doseGrams)
-        
-        
     }
 
 }

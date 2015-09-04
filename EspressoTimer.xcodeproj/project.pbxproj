@@ -13,6 +13,9 @@
 		FA3D9F3F1B8224F800ADC700 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA3D9F3E1B8224F800ADC700 /* Images.xcassets */; };
 		FA3D9F421B8224F800ADC700 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA3D9F401B8224F800ADC700 /* LaunchScreen.xib */; };
 		FA3D9F4E1B8224F800ADC700 /* BaristaTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3D9F4D1B8224F800ADC700 /* BaristaTimerTests.swift */; };
+		FAD304C91B987141009FDD22 /* espressoShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD304C81B987141009FDD22 /* espressoShot.swift */; settings = {ASSET_TAGS = (); }; };
+		FAD304CF1B989CCA009FDD22 /* finalizeShotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD304CE1B989CCA009FDD22 /* finalizeShotViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		FAD304D11B99B102009FDD22 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD304D01B99B102009FDD22 /* HelpViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,9 @@
 		FA3D9F471B8224F800ADC700 /* BaristaTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BaristaTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA3D9F4C1B8224F800ADC700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA3D9F4D1B8224F800ADC700 /* BaristaTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaristaTimerTests.swift; sourceTree = "<group>"; };
+		FAD304C81B987141009FDD22 /* espressoShot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = espressoShot.swift; sourceTree = "<group>"; };
+		FAD304CE1B989CCA009FDD22 /* finalizeShotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = finalizeShotViewController.swift; sourceTree = "<group>"; };
+		FAD304D01B99B102009FDD22 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +65,7 @@
 		FA3D9F291B8224F800ADC700 = {
 			isa = PBXGroup;
 			children = (
+				FAD304C81B987141009FDD22 /* espressoShot.swift */,
 				FA3D9F341B8224F800ADC700 /* BaristaTimer */,
 				FA3D9F4A1B8224F800ADC700 /* BaristaTimerTests */,
 				FA3D9F331B8224F800ADC700 /* Products */,
@@ -77,9 +84,11 @@
 		FA3D9F341B8224F800ADC700 /* BaristaTimer */ = {
 			isa = PBXGroup;
 			children = (
-				FA3D9F371B8224F800ADC700 /* AppDelegate.swift */,
-				FA3D9F3B1B8224F800ADC700 /* Main.storyboard */,
 				FA0436CB1B922D8000A31664 /* ExpertViewController.swift */,
+				FA3D9F3B1B8224F800ADC700 /* Main.storyboard */,
+				FAD304D01B99B102009FDD22 /* HelpViewController.swift */,
+				FAD304CE1B989CCA009FDD22 /* finalizeShotViewController.swift */,
+				FA3D9F371B8224F800ADC700 /* AppDelegate.swift */,
 				FA3D9F3E1B8224F800ADC700 /* Images.xcassets */,
 				FA3D9F401B8224F800ADC700 /* LaunchScreen.xib */,
 				FA3D9F351B8224F800ADC700 /* Supporting Files */,
@@ -212,8 +221,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAD304CF1B989CCA009FDD22 /* finalizeShotViewController.swift in Sources */,
 				FA0436CC1B922D8000A31664 /* ExpertViewController.swift in Sources */,
 				FA3D9F381B8224F800ADC700 /* AppDelegate.swift in Sources */,
+				FAD304C91B987141009FDD22 /* espressoShot.swift in Sources */,
+				FAD304D11B99B102009FDD22 /* HelpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
