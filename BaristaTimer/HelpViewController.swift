@@ -22,7 +22,7 @@ class HelpViewController: UIViewController {
         super.viewDidLoad()
         
     
-        self.view.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
+        self.view.backgroundColor = UIColor.init(red: 39/255, green: 179/255, blue: 225/255, alpha: 0.8)
         
         // Do any additional setup after loading the view.
     }
