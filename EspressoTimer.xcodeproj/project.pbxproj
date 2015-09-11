@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FA0436CC1B922D8000A31664 /* ExpertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0436CB1B922D8000A31664 /* ExpertViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		FA35A4941BA2DBE400FDCE68 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA35A4931BA2DBE400FDCE68 /* HistoryViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		FA3D9F381B8224F800ADC700 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3D9F371B8224F800ADC700 /* AppDelegate.swift */; };
 		FA3D9F3D1B8224F800ADC700 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA3D9F3B1B8224F800ADC700 /* Main.storyboard */; };
 		FA3D9F3F1B8224F800ADC700 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA3D9F3E1B8224F800ADC700 /* Images.xcassets */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		FA0436CB1B922D8000A31664 /* ExpertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpertViewController.swift; sourceTree = "<group>"; };
+		FA35A4931BA2DBE400FDCE68 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		FA3D9F321B8224F800ADC700 /* BaristaTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaristaTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA3D9F361B8224F800ADC700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA3D9F371B8224F800ADC700 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			children = (
 				FA0436CB1B922D8000A31664 /* ExpertViewController.swift */,
 				FA3D9F3B1B8224F800ADC700 /* Main.storyboard */,
+				FA35A4931BA2DBE400FDCE68 /* HistoryViewController.swift */,
 				FAD304D01B99B102009FDD22 /* HelpViewController.swift */,
 				FAD304CE1B989CCA009FDD22 /* finalizeShotViewController.swift */,
 				FA3D9F371B8224F800ADC700 /* AppDelegate.swift */,
@@ -224,6 +227,7 @@
 				FAD304CF1B989CCA009FDD22 /* finalizeShotViewController.swift in Sources */,
 				FA0436CC1B922D8000A31664 /* ExpertViewController.swift in Sources */,
 				FA3D9F381B8224F800ADC700 /* AppDelegate.swift in Sources */,
+				FA35A4941BA2DBE400FDCE68 /* HistoryViewController.swift in Sources */,
 				FAD304C91B987141009FDD22 /* espressoShot.swift in Sources */,
 				FAD304D11B99B102009FDD22 /* HelpViewController.swift in Sources */,
 			);

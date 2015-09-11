@@ -1,4 +1,4 @@
-//
+ //
 //  ExpertViewController.swift
 //  EspressoTimer
 //
@@ -19,6 +19,12 @@ class ExpertViewController: UIViewController {
     @IBOutlet weak var buttonLess: UIButton!
     @IBOutlet weak var timerDisplay: UILabel!
     @IBOutlet weak var gramsOutDisplay: UILabel!
+    @IBOutlet weak var infoButton: UIButton!
+    @IBOutlet weak var historyButton: UIButton!
+    @IBOutlet weak var leftArrow: UILabel!
+    @IBOutlet weak var rightArrow: UILabel!
+    @IBOutlet weak var centerPointer: UILabel!
+    @IBOutlet weak var coffeeEspressoSign: UILabel!
     
     enum timerStates {
         case Idle
@@ -93,41 +99,34 @@ class ExpertViewController: UIViewController {
         
         timerState = .Done
         
+        gramsInDisplay.alpha = 0
+        gramsOutDisplay.alpha = 1
+        targetYieldMax.alpha = 0
+        targetYieldMin.alpha = 0
+        gramsOutDisplay.textColor = self.myBlueColor
+        gramsOutDisplay.text = String(format: "%.01f", self.yieldGrams)
+
         buttonLess.enabled = true
         buttonMore.enabled = true
         buttonLess.alpha = 1
         buttonMore.alpha = 1
         
-        // Record data
+        leftArrow.textColor = myBlueColor
+        rightArrow.textColor = myBlueColor
+        centerPointer.textColor = myBlueColor
         
-        gramsOutDisplay.alpha = 1
-        targetYieldMax.alpha = 0
-        targetYieldMin.alpha = 0
-        gramsOutDisplay.textColor = myBlueColor
-        gramsInDisplay.textColor = UIColor.grayColor()
-        gramsOutDisplay.text = String(format: "%.01f", yieldGrams)
+        coffeeEspressoSign.text = "Espresso"
         
-        if #available(iOS 8.2, *) {
-            gramsInDisplay.font = UIFont.systemFontOfSize(60, weight: UIFontWeightThin)
-        } else {
-            // Fallback on earlier versions
-        }
-        
-        // Play STOP sound
-        
-        shots.append(lastShot)
-        
-        // Show YIELD reading Finalize VC
-        
-//        self.performSegueWithIdentifier("finalizeShot", sender: self)
     }
-    
     
     @IBAction func tapOnTimer(sender: UITapGestureRecognizer) {
         
         if timerState == .Idle {
             
             // play START sound
+            
+            infoButton.enabled = false
+            historyButton.enabled = false
             
             timerState = .Active
             timerDisplay.text = "0"
@@ -139,12 +138,31 @@ class ExpertViewController: UIViewController {
             buttonLess.alpha = 0.6
             buttonMore.alpha = 0.6
             
+            leftArrow.textColor = UIColor.lightGrayColor()
+            rightArrow.textColor = UIColor.lightGrayColor()
+            centerPointer.textColor = UIColor.lightGrayColor()
+            
+            targetYieldMin.textColor = myBlueColor
+            targetYieldMax.textColor = myBlueColor
+            gramsInDisplay.textColor = UIColor.grayColor()
+            
+            coffeeEspressoSign.text = "Brewing"
+            
+            if #available(iOS 8.2, *) {
+                gramsInDisplay.font = UIFont.systemFontOfSize(72, weight: UIFontWeightThin)
+            } else {
+                // Fallback on earlier versions
+            }
+            
+            
         } else if timerState == .Active {
             
             yieldGrams = (maxYield + minYield) / 2
             
             setScaleTo(yieldGrams, animate: true)
             stopTimer()
+            
+            coffeeEspressoSign.text = "Espresso"
             
         } else if timerState == .Done {
             
@@ -162,19 +180,35 @@ class ExpertViewController: UIViewController {
             
             // Re-initialize timer
             
-            timerDisplay.text = "0"
-            targetYieldMax.alpha = 1
-            targetYieldMin.alpha = 1
-            gramsOutDisplay.alpha = 0
-            gramsOutDisplay.textColor = UIColor.blackColor()
+            self.gramsOutDisplay.alpha = 0
             
-            gramsInDisplay.textColor = myBlueColor
+            UIView.animateWithDuration(1, animations: {
             
-            if #available(iOS 8.2, *) {
-                gramsInDisplay.font = UIFont.systemFontOfSize(60, weight: UIFontWeightLight)
-            } else {
-                gramsInDisplay.font = UIFont.systemFontOfSize(60)
-            }
+                self.coffeeEspressoSign.text = "Coffee"
+                self.timerDisplay.text = "0"
+//                self.targetYieldMax.alpha = 1
+//                self.targetYieldMin.alpha = 1
+                self.targetYieldMin.textColor = UIColor.blackColor()
+                self.targetYieldMax.textColor = UIColor.blackColor()
+                self.gramsInDisplay.alpha = 1
+                self.gramsInDisplay.textColor = self.myBlueColor
+                
+                if #available(iOS 8.2, *) {
+                    self.gramsInDisplay.font = UIFont.systemFontOfSize(72, weight: UIFontWeightThin)
+                } else {
+                    self.gramsInDisplay.font = UIFont.systemFontOfSize(72)
+                }
+                
+            })
+
+            infoButton.enabled = true
+            historyButton.enabled = true
+            
+            // Record data
+            
+            shots.append(lastShot)
+            print("shot added: \(shots.count)")
+            
             
         }
         
@@ -186,8 +220,6 @@ class ExpertViewController: UIViewController {
         let gramsDelta = currentGrams - targetSetting
         let xOffset = gramsDelta * oneGram
         currentGrams = targetSetting
-        
-        print("gramsDelta \(gramsDelta) xOffset \(xOffset)")
         
         if animate {
             UIView.animateWithDuration(1, animations: {
@@ -225,20 +257,9 @@ class ExpertViewController: UIViewController {
             
         case 3 :
             
-//            doseGrams = round(doseGrams*10)/10
-//            yieldGrams = round(yieldGrams*10)/10
-//            
-//            print("dose \(doseGrams) yiled \(yieldGrams)")
-//            
-//            if timerState == .Idle {
-//                setScaleTo(doseGrams, animate: false)
-//            } 
-//                else if timerState == .Done {
-//                setScaleTo(yieldGrams, animate: false)
-//            }
-            
             targetYieldMin.text = String(format: "%.01f", minYield)
             targetYieldMax.text = String(format: "%.01f", maxYield)
+            
             if timerState == .Idle {
                 currentGrams = doseGrams
             } else if timerState == .Done {
@@ -254,16 +275,20 @@ class ExpertViewController: UIViewController {
         oneGram = Float(gramScalGr.frame.width / 100)
         timerDisplay.text = "0"
         doseGrams = 16
+        targetYieldMax.alpha = 0
+        targetYieldMin.alpha = 0
         targetYieldMin.text = String(format: "%.01f", minYield)
         targetYieldMax.text = String(format: "%.01f", maxYield)
         
+        UIApplication.sharedApplication().idleTimerDisabled = true
+        
         gramsOutDisplay.alpha = 0
         
-        if #available(iOS 9.0, *) {
-            timerDisplay.font = UIFont.monospacedDigitSystemFontOfSize(180, weight: UIFontWeightUltraLight)
-        } else {
-            // Fallback on earlier versions
-        }
+//        if #available(iOS 9.0, *) {
+//            timerDisplay.font = UIFont.monospacedDigitSystemFontOfSize(180, weight: UIFontWeightUltraLight)
+//        } else {
+//            // Fallback on earlier versions
+//        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -274,11 +299,10 @@ class ExpertViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "finalizeShot" {
-            let finalizeVC = segue.destinationViewController as! finalizeShotViewController
-            finalizeVC.aShot = lastShot
-            finalizeVC.shots = shots
-            
+        if segue.identifier == "showHistoryVC" {
+            let finalizeVC = segue.destinationViewController as! HistoryViewController
+            finalizeVC.lastShot = lastShot
+            finalizeVC.allShots = shots
         }
     }
 }
