@@ -192,11 +192,17 @@ class ExpertViewController: UIViewController {
         let gramsDelta = currentGrams - targetSetting
         let xOffset = gramsDelta * oneGram
         currentGrams = targetSetting
-        
+
         if animate {
-            UIView.animateWithDuration(0.5, animations: {
+            
+            let options = UIViewAnimationOptions.CurveEaseInOut
+            
+            UIView.animateWithDuration(1, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.9, options: options, animations: {
+                
                 self.gramScalGr.frame = CGRect(x: self.gramScalGr.frame.origin.x + CGFloat(xOffset), y: self.gramScalGr.frame.origin.y, width: self.gramScalGr.frame.width, height: self.gramScalGr.frame.height)
-            })
+                
+                }, completion: nil)
+
         } else {
             self.gramScalGr.frame = CGRect(x: self.gramScalGr.frame.origin.x + CGFloat(xOffset), y: self.gramScalGr.frame.origin.y, width: self.gramScalGr.frame.width, height: self.gramScalGr.frame.height)
         }
