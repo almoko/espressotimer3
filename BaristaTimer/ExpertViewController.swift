@@ -12,19 +12,21 @@ class ExpertViewController: UIViewController {
     
     @IBOutlet weak var gramsView: UIView!
     @IBOutlet weak var gramScalGr: UIView!
-    @IBOutlet weak var gramsInDisplay: UILabel!
-    @IBOutlet weak var targetYieldMin: UILabel!
-    @IBOutlet weak var targetYieldMax: UILabel!
-    @IBOutlet weak var buttonMore: UIButton!
-    @IBOutlet weak var buttonLess: UIButton!
+    @IBOutlet weak var gramsDisplay: UILabel!
     @IBOutlet weak var timerDisplay: UILabel!
-    @IBOutlet weak var gramsOutDisplay: UILabel!
     @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var historyButton: UIButton!
-    @IBOutlet weak var leftArrow: UILabel!
-    @IBOutlet weak var rightArrow: UILabel!
+    @IBOutlet weak var gramsDisplayView: UIView!
     @IBOutlet weak var centerPointer: UILabel!
-    @IBOutlet weak var coffeeEspressoSign: UILabel!
+    
+    @IBOutlet weak var circle1: UILabel!
+    @IBOutlet weak var circle2: UILabel!
+    @IBOutlet weak var circle3: UILabel!
+    @IBOutlet weak var actionButton: UIButton!
+    @IBOutlet weak var hintText: UILabel!
+    @IBOutlet weak var hintText2: UILabel!
+    @IBOutlet weak var discardButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
     
     enum timerStates {
         case Idle
@@ -42,7 +44,6 @@ class ExpertViewController: UIViewController {
             maxYield = round(doseGrams*10)/10 * 2.5
         }
     }
-    
     var yieldGrams : Float = 0
     
     var minYield : Float = 0
@@ -59,21 +60,9 @@ class ExpertViewController: UIViewController {
     var lastShot = espressoShot()
     var shots = [espressoShot]()
     
-    @IBAction func setTimerTarget(sender: UIButton) {
-        
-        if timerState == .Idle {
-            switch sender.currentTitle! {
-            case ">" : if targetTimerSetting < 40 { targetTimerSetting++ }
-            case "<" : if targetTimerSetting > 1 { targetTimerSetting-- }
-            default : print("wrong button")
-            }
-            timerDisplay.text = String(targetTimerSetting)
-        }
-    }
-    
     func timerStep() {
         
-        if currentTimer < 40 {
+        if currentTimer < 60 {
             currentTimer++
         } else {
             stopTimer()
@@ -99,29 +88,23 @@ class ExpertViewController: UIViewController {
         
         timerState = .Done
         
-        gramsInDisplay.alpha = 0
-        gramsOutDisplay.alpha = 1
-        targetYieldMax.alpha = 0
-        targetYieldMin.alpha = 0
-        gramsOutDisplay.textColor = self.myBlueColor
-        gramsOutDisplay.text = String(format: "%.01f", self.yieldGrams)
-
-        buttonLess.enabled = true
-        buttonMore.enabled = true
-        buttonLess.alpha = 1
-        buttonMore.alpha = 1
+        gramsDisplay.textColor = self.myBlueColor
+        gramsDisplay.text = String(format: "%.01f", self.yieldGrams)
         
-        leftArrow.textColor = myBlueColor
-        rightArrow.textColor = myBlueColor
         centerPointer.textColor = myBlueColor
-        
-        coffeeEspressoSign.text = "Espresso"
-        
     }
     
-    @IBAction func tapOnTimer(sender: UITapGestureRecognizer) {
+    @IBAction func actionBtnTap(sender: UIButton) {
+        tapOnTimer(nil)
+    }
+    
+    
+    @IBAction func tapOnTimer(sender: UITapGestureRecognizer?) {
         
         if timerState == .Idle {
+            
+            circle1.text = "○"
+            circle2.text = "◉"
             
             // play START sound
             
@@ -133,38 +116,48 @@ class ExpertViewController: UIViewController {
             currentTimer = 0
             timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: aSel, userInfo: nil, repeats: true)
             
-            buttonLess.enabled = false
-            buttonMore.enabled = false
-            buttonLess.alpha = 0.6
-            buttonMore.alpha = 0.6
+            hintText2.text = "At " + String(format: "%.01f", doseGrams) + "g dose of coffee, your espresso should weigh " + String(format: "%.01f", minYield) + " to " + String(format: "%.01f", maxYield) + " grams"
             
-            leftArrow.textColor = UIColor.lightGrayColor()
-            rightArrow.textColor = UIColor.lightGrayColor()
-            centerPointer.textColor = UIColor.lightGrayColor()
             
-            targetYieldMin.textColor = myBlueColor
-            targetYieldMax.textColor = myBlueColor
-            gramsInDisplay.textColor = UIColor.grayColor()
+            hintText.alpha = 0
+            actionButton.setTitle("STOP BREWING", forState: .Normal)
+            gramsView.alpha = 0
+            gramsDisplay.alpha = 0
+            actionButton.alpha = 1
             
-            coffeeEspressoSign.text = "Brewing"
-            
-            if #available(iOS 8.2, *) {
-                gramsInDisplay.font = UIFont.systemFontOfSize(72, weight: UIFontWeightThin)
-            } else {
-                // Fallback on earlier versions
-            }
-            
+            UIView.animateWithDuration(0.3, animations: {
+                self.hintText2.alpha = 1
+            })
             
         } else if timerState == .Active {
+            
+            circle2.text = "○"
+            circle3.text = "◉"
+            
+            hintText.text = "Pick your espresso weight"
+            hintText.alpha = 1
             
             yieldGrams = (maxYield + minYield) / 2
             
             setScaleTo(yieldGrams, animate: true)
             stopTimer()
             
-            coffeeEspressoSign.text = "Espresso"
+            actionButton.setTitle("BREW NOW", forState: .Normal)
+            
+            UIView.animateWithDuration(0.3, animations: {
+                self.gramsView.alpha = 1
+                self.gramsDisplayView.alpha = 1
+            })
+            
+            hintText2.alpha = 0
+            actionButton.alpha = 0
+            saveButton.alpha = 1
+            discardButton.alpha = 1
             
         } else if timerState == .Done {
+            
+            circle3.text = "○"
+            circle1.text = "◉"
             
             timerState = .Idle
             
@@ -175,45 +168,24 @@ class ExpertViewController: UIViewController {
             lastShot.yield = Float(round(yieldGrams*10)/10)
             
             // Set scale to last shot's grams
-            
+            hintText.text = "Grind and weigh your coffee"
             setScaleTo(lastShot.dose, animate: true)
             
-            // Re-initialize timer
-            
-            self.gramsOutDisplay.alpha = 0
-            
-            UIView.animateWithDuration(1, animations: {
-            
-                self.coffeeEspressoSign.text = "Coffee"
+            UIView.animateWithDuration(0.3, animations: {
                 self.timerDisplay.text = "0"
-//                self.targetYieldMax.alpha = 1
-//                self.targetYieldMin.alpha = 1
-                self.targetYieldMin.textColor = UIColor.blackColor()
-                self.targetYieldMax.textColor = UIColor.blackColor()
-                self.gramsInDisplay.alpha = 1
-                self.gramsInDisplay.textColor = self.myBlueColor
-                
-                if #available(iOS 8.2, *) {
-                    self.gramsInDisplay.font = UIFont.systemFontOfSize(72, weight: UIFontWeightThin)
-                } else {
-                    self.gramsInDisplay.font = UIFont.systemFontOfSize(72)
-                }
-                
             })
-
+            
             infoButton.enabled = true
             historyButton.enabled = true
+            discardButton.alpha = 0
+            saveButton.alpha = 0
+            actionButton.alpha = 1
             
             // Record data
             
             shots.append(lastShot)
-            print("shot added: \(shots.count)")
-            
-            
         }
-        
     }
-    
     
     func setScaleTo (targetSetting: Float, animate: Bool) {
         
@@ -222,12 +194,14 @@ class ExpertViewController: UIViewController {
         currentGrams = targetSetting
         
         if animate {
-            UIView.animateWithDuration(1, animations: {
+            UIView.animateWithDuration(0.5, animations: {
                 self.gramScalGr.frame = CGRect(x: self.gramScalGr.frame.origin.x + CGFloat(xOffset), y: self.gramScalGr.frame.origin.y, width: self.gramScalGr.frame.width, height: self.gramScalGr.frame.height)
             })
         } else {
             self.gramScalGr.frame = CGRect(x: self.gramScalGr.frame.origin.x + CGFloat(xOffset), y: self.gramScalGr.frame.origin.y, width: self.gramScalGr.frame.width, height: self.gramScalGr.frame.height)
         }
+        
+        gramsDisplay.text = String(targetSetting)
     }
     
     @IBAction func panGrams(sender: UIPanGestureRecognizer) {
@@ -247,19 +221,16 @@ class ExpertViewController: UIViewController {
                     
                     if timerState == .Idle {
                         doseGrams = currentGrams - Float(offsetX) / oneGram
-                        gramsInDisplay.text = String(format: "%.01f", doseGrams)
+                        gramsDisplay.text = String(format: "%.01f", doseGrams)
                     } else if timerState == .Done {
                         yieldGrams = currentGrams - Float(offsetX) / oneGram
-                        gramsOutDisplay.text = String(format: "%.01f", yieldGrams)
+                        gramsDisplay.text = String(format: "%.01f", yieldGrams)
                     }
                 }
             }
             
         case 3 :
-            
-            targetYieldMin.text = String(format: "%.01f", minYield)
-            targetYieldMax.text = String(format: "%.01f", maxYield)
-            
+
             if timerState == .Idle {
                 currentGrams = doseGrams
             } else if timerState == .Done {
@@ -275,26 +246,15 @@ class ExpertViewController: UIViewController {
         oneGram = Float(gramScalGr.frame.width / 100)
         timerDisplay.text = "0"
         doseGrams = 16
-        targetYieldMax.alpha = 0
-        targetYieldMin.alpha = 0
-        targetYieldMin.text = String(format: "%.01f", minYield)
-        targetYieldMax.text = String(format: "%.01f", maxYield)
-        
         UIApplication.sharedApplication().idleTimerDisabled = true
-        
-        gramsOutDisplay.alpha = 0
-        
-//        if #available(iOS 9.0, *) {
-//            timerDisplay.font = UIFont.monospacedDigitSystemFontOfSize(180, weight: UIFontWeightUltraLight)
-//        } else {
-//            // Fallback on earlier versions
-//        }
+        hintText2.alpha = 0
+        saveButton.alpha = 0
+        discardButton.alpha = 0
     }
     
     override func viewDidAppear(animated: Bool) {
         setScaleTo(doseGrams, animate: false)
         doseGrams = 18
-        gramsInDisplay.text = String(doseGrams)
         setScaleTo(doseGrams, animate: true)
     }
     
