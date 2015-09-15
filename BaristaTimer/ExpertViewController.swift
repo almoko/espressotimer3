@@ -24,12 +24,16 @@ class ExpertViewController: UIViewController {
     @IBOutlet weak var circle3: UILabel!
     @IBOutlet weak var actionButton: UIButton!
     @IBOutlet weak var hintText: UILabel!
-    @IBOutlet weak var hintText2: UILabel!
     @IBOutlet weak var discardButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var leftGrayArrow: UILabel!
     @IBOutlet weak var rightGrayArrow: UILabel!
 
+    @IBOutlet weak var finalizeShotCard: UIView!
+    @IBOutlet weak var finalDozeDisplay: UILabel!
+    @IBOutlet weak var finalYieldDisplay: UILabel!
+    
+    
     enum timerStates {
         case Idle
         case Active
@@ -121,12 +125,13 @@ class ExpertViewController: UIViewController {
             
             hintText.text = "Your espresso should weigh " + String(format: "%.01f", minYield) + " to " + String(format: "%.01f", maxYield) + " grams"
             
+            yieldGrams = (maxYield + minYield) / 2
             
-//            hintText.alpha = 0
+            finalDozeDisplay.text = String(format: "%.01f", doseGrams)
+            finalYieldDisplay.text = String(format: "%.01f", yieldGrams)
+
             actionButton.setTitle("STOP", forState: .Normal)
-//            gramsView.alpha = 0
-//            gramsDisplay.alpha = 0
-            actionButton.alpha = 1
+//            actionButton.alpha = 1
             
             UIView.animateWithDuration(1, animations: {
                 self.gramsDisplay.textColor = UIColor.lightGrayColor()
@@ -140,20 +145,17 @@ class ExpertViewController: UIViewController {
             hintText.text = "ESPRESSO WEIGHT"
             hintText.alpha = 1
             
-            yieldGrams = (maxYield + minYield) / 2
-            
             setScaleTo(yieldGrams, animate: true)
             stopTimer()
             
             actionButton.setTitle("START", forState: .Normal)
+            finalizeShotCard.hidden = false
             
             UIView.animateWithDuration(0.3, animations: {
- //
+                
             })
             
             actionButton.alpha = 0
-            saveButton.alpha = 1
-            discardButton.alpha = 1
             
         } else if timerState == .Done {
             
@@ -178,9 +180,9 @@ class ExpertViewController: UIViewController {
             
             infoButton.enabled = true
             historyButton.enabled = true
-            discardButton.alpha = 0
-            saveButton.alpha = 0
             actionButton.alpha = 1
+            
+            finalizeShotCard.hidden = true
             
             // Record data
             
@@ -189,12 +191,7 @@ class ExpertViewController: UIViewController {
     }
     
     func animateLabel (label: UILabel) {
-//        let chars = label.text?.characters.
-//        
-//        for x in 0 ... chars!.count {
-//            let char = chars[_]
-//            chars[x]
-//        }
+//
     }
     
     func setScaleTo (targetSetting: Float, animate: Bool) {
@@ -221,9 +218,6 @@ class ExpertViewController: UIViewController {
     }
     
     @IBAction func panGrams(sender: UIPanGestureRecognizer) {
-        
-//        let velocity = sender.velocityInView(sender.view)
-//        print(velocity)
         
         switch sender.state.rawValue {
         case 1 :
@@ -260,6 +254,11 @@ class ExpertViewController: UIViewController {
                 currentGrams = doseGrams
             } else if timerState == .Done {
                 currentGrams = yieldGrams
+                
+                UIView.animateWithDuration(1, animations: {
+                    self.finalYieldDisplay.text = String(format: "%.01f", self.yieldGrams)
+                })
+                
             }
             
             UIView.animateWithDuration(0.5, animations: {
@@ -276,20 +275,15 @@ class ExpertViewController: UIViewController {
         oneGram = Float(gramScalGr.frame.width / 100)
         timerDisplay.text = "0"
         doseGrams = 16
-        hintText2.alpha = 0
-        saveButton.alpha = 0
-        discardButton.alpha = 0
         
         noSleepTimer = NSTimer.scheduledTimerWithTimeInterval(60*3, target: self, selector: "removeNoSleepTimer", userInfo: nil, repeats: false)
         UIApplication.sharedApplication().idleTimerDisabled = true
-        
         animateLabel(hintText)
     }
     
     func removeNoSleepTimer() {
         noSleepTimer.invalidate()
         UIApplication.sharedApplication().idleTimerDisabled = false
-        print("No Sleep Timer is Done")
     }
     
     override func viewDidAppear(animated: Bool) {
