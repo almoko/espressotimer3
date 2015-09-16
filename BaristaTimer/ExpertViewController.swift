@@ -18,7 +18,6 @@ class ExpertViewController: UIViewController {
     @IBOutlet weak var historyButton: UIButton!
     @IBOutlet weak var gramsDisplayView: UIView!
     @IBOutlet weak var centerPointer: UILabel!
-    
     @IBOutlet weak var circle1: UILabel!
     @IBOutlet weak var circle2: UILabel!
     @IBOutlet weak var circle3: UILabel!
@@ -28,7 +27,6 @@ class ExpertViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var leftGrayArrow: UILabel!
     @IBOutlet weak var rightGrayArrow: UILabel!
-
     @IBOutlet weak var finalizeShotCard: UIView!
     @IBOutlet weak var finalDozeDisplay: UILabel!
     @IBOutlet weak var finalYieldDisplay: UILabel!
@@ -43,6 +41,7 @@ class ExpertViewController: UIViewController {
     var timerState : timerStates = .Idle
     
 //    let myBlueColor = UIColor.init(red: 39/255, green: 179/255, blue: 225/255, alpha: 0.8)
+    
     let myBrownColor = UIColor.init(red: 153/255, green: 102/255, blue: 51/255, alpha: 1)
     var origXgrams : CGFloat = 0
     var doseGrams : Float = 18 {
@@ -52,21 +51,21 @@ class ExpertViewController: UIViewController {
         }
     }
     var yieldGrams : Float = 0
-    
     var minYield : Float = 0
     var maxYield : Float = 0
     
     var oneGram : Float = 0
     var currentGrams : Float = 50
     
-    let aSel : Selector = "timerStep"
     var timer = NSTimer()
     var noSleepTimer = NSTimer()
     var currentTimer = 0
     var targetTimerSetting = 25
     
-    var lastShot = espressoShot()
+//    var lastShot = espressoShot(dose: 0, yield: 0, time: 0)
     var shots = [espressoShot]()
+    
+    // MARK: Functions
     
     func timerStep() {
         
@@ -89,22 +88,17 @@ class ExpertViewController: UIViewController {
     }
     
     func stopTimer () {
-        
-        // Visuals and Mechanics
-        
+     
         timer.invalidate()
-        
         timerState = .Done
         
         gramsDisplay.textColor = myBrownColor
         gramsDisplay.text = String(format: "%.01f", self.yieldGrams)
-        
     }
     
     @IBAction func actionBtnTap(sender: UIButton) {
         tapOnTimer(nil)
     }
-    
     
     @IBAction func tapOnTimer(sender: UITapGestureRecognizer?) {
         
@@ -121,7 +115,7 @@ class ExpertViewController: UIViewController {
             timerState = .Active
             timerDisplay.text = "0"
             currentTimer = 0
-            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: aSel, userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "timerStep", userInfo: nil, repeats: true)
             
             hintText.text = "Your espresso should weigh " + String(format: "%.01f", minYield) + " to " + String(format: "%.01f", maxYield) + " grams"
             
@@ -131,10 +125,11 @@ class ExpertViewController: UIViewController {
             finalYieldDisplay.text = String(format: "%.01f", yieldGrams)
 
             actionButton.setTitle("STOP", forState: .Normal)
-//            actionButton.alpha = 1
             
             UIView.animateWithDuration(1, animations: {
                 self.gramsDisplay.textColor = UIColor.lightGrayColor()
+                self.leftGrayArrow.alpha = 0
+                self.rightGrayArrow.alpha = 0
             })
             
         } else if timerState == .Active {
@@ -143,19 +138,14 @@ class ExpertViewController: UIViewController {
             circle3.text = "◉"
             
             hintText.text = "ESPRESSO WEIGHT"
-            hintText.alpha = 1
-            
             setScaleTo(yieldGrams, animate: true)
             stopTimer()
             
             actionButton.setTitle("START", forState: .Normal)
             finalizeShotCard.hidden = false
             
-            UIView.animateWithDuration(0.3, animations: {
-                
-            })
-            
-            actionButton.alpha = 0
+            leftGrayArrow.alpha = 1
+            rightGrayArrow.alpha = 1
             
         } else if timerState == .Done {
             
@@ -164,34 +154,25 @@ class ExpertViewController: UIViewController {
             
             timerState = .Idle
             
-            // Save last Shot
+            let l = espressoShot(dose: Float(round(doseGrams*10)/10), yield: Float(round(yieldGrams*10)/10), time: currentTimer)
             
-            lastShot.dose = Float(round(doseGrams*10)/10)
-            lastShot.time = currentTimer
-            lastShot.yield = Float(round(yieldGrams*10)/10)
+//            lastShot.dose = Float(round(doseGrams*10)/10)
+//            lastShot.time = currentTimer
+//            lastShot.yield = Float(round(yieldGrams*10)/10)
             
             // Set scale to last shot's grams
             hintText.text = "COFFEE WEIGHT"
-            setScaleTo(lastShot.dose, animate: true)
-            
-            UIView.animateWithDuration(0.3, animations: {
-                self.timerDisplay.text = "0"
-            })
-            
+            setScaleTo(l.dose, animate: true)
+            timerDisplay.text = "0"
             infoButton.enabled = true
             historyButton.enabled = true
-            actionButton.alpha = 1
-            
             finalizeShotCard.hidden = true
             
             // Record data
             
-            shots.append(lastShot)
+            shots.append(l)
+            saveShots()
         }
-    }
-    
-    func animateLabel (label: UILabel) {
-//
     }
     
     func setScaleTo (targetSetting: Float, animate: Bool) {
@@ -205,15 +186,12 @@ class ExpertViewController: UIViewController {
             let options = UIViewAnimationOptions.CurveEaseInOut
             
             UIView.animateWithDuration(1, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.9, options: options, animations: {
-                
                 self.gramScalGr.frame = CGRect(x: self.gramScalGr.frame.origin.x + CGFloat(xOffset), y: self.gramScalGr.frame.origin.y, width: self.gramScalGr.frame.width, height: self.gramScalGr.frame.height)
-                
                 }, completion: nil)
 
         } else {
             self.gramScalGr.frame = CGRect(x: self.gramScalGr.frame.origin.x + CGFloat(xOffset), y: self.gramScalGr.frame.origin.y, width: self.gramScalGr.frame.width, height: self.gramScalGr.frame.height)
         }
-        
         gramsDisplay.text = String(targetSetting)
     }
     
@@ -222,7 +200,6 @@ class ExpertViewController: UIViewController {
         switch sender.state.rawValue {
         case 1 :
             origXgrams = gramScalGr.frame.origin.x
-            
             UIView.animateWithDuration(0.1, animations: {
                 self.leftGrayArrow.alpha = 0
                 self.rightGrayArrow.alpha = 0
@@ -254,11 +231,7 @@ class ExpertViewController: UIViewController {
                 currentGrams = doseGrams
             } else if timerState == .Done {
                 currentGrams = yieldGrams
-                
-                UIView.animateWithDuration(1, animations: {
-                    self.finalYieldDisplay.text = String(format: "%.01f", self.yieldGrams)
-                })
-                
+                finalYieldDisplay.text = String(format: "%.01f", self.yieldGrams)
             }
             
             UIView.animateWithDuration(0.5, animations: {
@@ -269,16 +242,24 @@ class ExpertViewController: UIViewController {
         default : break
     }
     }
+    
+    func clearAllRecords() {
+        shots.removeAll()
+        saveShots()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         oneGram = Float(gramScalGr.frame.width / 100)
         timerDisplay.text = "0"
-        doseGrams = 16
+        doseGrams = 10
         
         noSleepTimer = NSTimer.scheduledTimerWithTimeInterval(60*3, target: self, selector: "removeNoSleepTimer", userInfo: nil, repeats: false)
         UIApplication.sharedApplication().idleTimerDisabled = true
-        animateLabel(hintText)
+        
+        if let savedShots = loadShots() {
+            shots = savedShots
+        }
     }
     
     func removeNoSleepTimer() {
@@ -294,9 +275,18 @@ class ExpertViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showHistoryVC" {
-            let finalizeVC = segue.destinationViewController as! HistoryViewController
-            finalizeVC.lastShot = lastShot
-            finalizeVC.allShots = shots
+            let historyVC = segue.destinationViewController as! HistoryViewController
+            historyVC.allShots = shots
         }
+    }
+    
+    // MARK: NSCoding
+    
+    func saveShots() {
+        _ = NSKeyedArchiver.archiveRootObject(shots, toFile: espressoShot.ArchiverURL.path!)
+    }
+        
+    func loadShots() -> [espressoShot]? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(espressoShot.ArchiverURL.path!) as? [espressoShot]
     }
 }

@@ -10,8 +10,10 @@ import UIKit
 
 class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var lastShot = espressoShot!()
     var allShots = [espressoShot]!()
+    
+    @IBOutlet weak var historyTableView: UITableView!
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allShots.count
@@ -21,17 +23,24 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell = tableView.dequeueReusableCellWithIdentifier("historyCell", forIndexPath: indexPath)
         cell.detailTextLabel!.text = "\(allShots[allShots.count - indexPath.item - 1].time) sec"
         cell.textLabel!.text = "\(allShots[allShots.count - indexPath.item - 1].dose) → \(allShots[allShots.count - indexPath.item - 1].yield)"
-        
-        print(indexPath.item)
-        
+
         return cell
     }
     
     @IBAction func dismissHistory(sender: UIButton) {
         
         self.presentingViewController?.dismissViewControllerAnimated(true, completion: {})
+    }
+    
+    @IBAction func clearAll(sender: UIButton) {
+        // Clear all records
+        self.presentingViewController?.performSelector("clearAllRecords")
+        allShots.removeAll()
+        historyTableView.reloadData()
         
     }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
