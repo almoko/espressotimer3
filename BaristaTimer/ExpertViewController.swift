@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ExpertViewController: UIViewController {
     
@@ -107,7 +108,12 @@ class ExpertViewController: UIViewController {
             circle1.text = "○"
             circle2.text = "◉"
             
-            // play START sound
+            // 1057 nice tink
+            // 1110 tudu
+            // 1113 begin recording - suttle
+            // 1115-1116 my start and finish sounds
+            
+            AudioServicesPlaySystemSound(1057)
             
             infoButton.enabled = false
             historyButton.enabled = false
@@ -147,6 +153,8 @@ class ExpertViewController: UIViewController {
             leftGrayArrow.alpha = 1
             rightGrayArrow.alpha = 1
             
+            AudioServicesPlaySystemSound(1057)
+            
         } else if timerState == .Done {
             
             circle3.text = "○"
@@ -156,11 +164,8 @@ class ExpertViewController: UIViewController {
             
             let l = espressoShot(dose: Float(round(doseGrams*10)/10), yield: Float(round(yieldGrams*10)/10), time: currentTimer)
             
-//            lastShot.dose = Float(round(doseGrams*10)/10)
-//            lastShot.time = currentTimer
-//            lastShot.yield = Float(round(yieldGrams*10)/10)
-            
             // Set scale to last shot's grams
+            
             hintText.text = "COFFEE WEIGHT"
             setScaleTo(l.dose, animate: true)
             timerDisplay.text = "0"
@@ -204,6 +209,9 @@ class ExpertViewController: UIViewController {
                 self.leftGrayArrow.alpha = 0
                 self.rightGrayArrow.alpha = 0
             })
+            if timerState != .Active {
+                AudioServicesPlaySystemSound(1306)
+            }
             
         case 2 :
             
