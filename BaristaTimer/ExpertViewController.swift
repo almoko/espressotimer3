@@ -24,14 +24,19 @@ class ExpertViewController: UIViewController {
     @IBOutlet weak var circle3: UILabel!
     @IBOutlet weak var actionButton: UIButton!
     @IBOutlet weak var hintText: UILabel!
-    @IBOutlet weak var discardButton: UIButton!
-    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var leftGrayArrow: UILabel!
     @IBOutlet weak var rightGrayArrow: UILabel!
     @IBOutlet weak var finalizeShotCard: UIView!
     @IBOutlet weak var finalDozeDisplay: UILabel!
     @IBOutlet weak var finalYieldDisplay: UILabel!
     
+    //Rating stars
+    
+    @IBOutlet weak var star1: UILabel!
+    @IBOutlet weak var star2: UILabel!
+    @IBOutlet weak var star3: UILabel!
+    @IBOutlet weak var star4: UILabel!
+    @IBOutlet weak var star5: UILabel!
     
     enum timerStates {
         case Idle
@@ -40,6 +45,7 @@ class ExpertViewController: UIViewController {
     }
     
     var timerState : timerStates = .Idle
+    var shotRating = 1
     
 //    let myBlueColor = UIColor.init(red: 39/255, green: 179/255, blue: 225/255, alpha: 0.8)
     
@@ -123,7 +129,7 @@ class ExpertViewController: UIViewController {
             currentTimer = 0
             timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "timerStep", userInfo: nil, repeats: true)
             
-            hintText.text = "Your espresso should weigh " + String(format: "%.01f", minYield) + " to " + String(format: "%.01f", maxYield) + " grams"
+            hintText.text = "Your espresso should weigh \n" + String(format: "%.01f", minYield) + " to " + String(format: "%.01f", maxYield) + " grams"
             
             yieldGrams = (maxYield + minYield) / 2
             
@@ -154,15 +160,19 @@ class ExpertViewController: UIViewController {
             rightGrayArrow.alpha = 1
             
             AudioServicesPlaySystemSound(1057)
-            
-        } else if timerState == .Done {
-            
+        }
+    }
+    
+    @IBAction func saveAndNew(sender: UIButton) {
+        
+        if timerState == .Done {
             circle3.text = "○"
             circle1.text = "◉"
             
             timerState = .Idle
             
-            let l = espressoShot(dose: Float(round(doseGrams*10)/10), yield: Float(round(yieldGrams*10)/10), time: currentTimer)
+            let nowDate = NSDate()
+            let l = espressoShot(dose: Float(round(doseGrams*10)/10), yield: Float(round(yieldGrams*10)/10), time: currentTimer, date: nowDate, rating: shotRating)
             
             // Set scale to last shot's grams
             
@@ -171,14 +181,64 @@ class ExpertViewController: UIViewController {
             timerDisplay.text = "0"
             infoButton.enabled = true
             historyButton.enabled = true
+        
+            switch sender.currentTitle! {
+            case "✔︎", "SAVE" :
+                shots.append(l)
+                saveShots()
+            case "✖︎", "DISCARD" :
+                break
+            default :
+                break
+            }
             finalizeShotCard.hidden = true
-            
-            // Record data
-            
-            shots.append(l)
-            saveShots()
         }
+        
     }
+    
+    @IBAction func setRating(sender: UITapGestureRecognizer) {
+        switch sender.view! {
+        case star1 :
+            star1.text = "★"
+            star2.text = "☆"
+            star3.text = "☆"
+            star4.text = "☆"
+            star5.text = "☆"
+            shotRating = 1
+        case star2 :
+            star1.text = "★"
+            star2.text = "★"
+            star3.text = "☆"
+            star4.text = "☆"
+            star5.text = "☆"
+            shotRating = 2
+        case star3 :
+            star1.text = "★"
+            star2.text = "★"
+            star3.text = "★"
+            star4.text = "☆"
+            star5.text = "☆"
+            shotRating = 3
+        case star4 :
+            star1.text = "★"
+            star2.text = "★"
+            star3.text = "★"
+            star4.text = "★"
+            star5.text = "☆"
+            shotRating = 4
+        case star5 :
+            star1.text = "★"
+            star2.text = "★"
+            star3.text = "★"
+            star4.text = "★"
+            star5.text = "★"
+            shotRating = 5
+        default : break
+        }
+        
+    }
+    
+    
     
     func setScaleTo (targetSetting: Float, animate: Bool) {
         

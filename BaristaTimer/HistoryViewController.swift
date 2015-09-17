@@ -14,7 +14,6 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBOutlet weak var historyTableView: UITableView!
     
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allShots.count
     }
@@ -22,7 +21,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("historyCell", forIndexPath: indexPath)
         cell.detailTextLabel!.text = "\(allShots[allShots.count - indexPath.item - 1].time) sec"
-        cell.textLabel!.text = "\(allShots[allShots.count - indexPath.item - 1].dose) → \(allShots[allShots.count - indexPath.item - 1].yield)"
+        cell.textLabel!.text = "\(allShots[allShots.count - indexPath.item - 1].dose) → \(allShots[allShots.count - indexPath.item - 1].yield)   \(allShots[allShots.count - indexPath.item - 1].rating)★"
 
         return cell
     }
