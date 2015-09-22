@@ -21,13 +21,16 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("historyCell", forIndexPath: indexPath) as! ShotsSummaryTableViewCell
         
-//        cell.detailTextLabel!.text = "\(allShots[allShots.count - indexPath.item - 1].time) sec"
-//        cell.textLabel!.text = "\(allShots[allShots.count - indexPath.item - 1].dose) → \(allShots[allShots.count - indexPath.item - 1].yield)   \(allShots[allShots.count - indexPath.item - 1].rating)★"
+//        cell.textLabel!.text = " →    \(allShots[allShots.count - indexPath.item - 1].rating)★"
         
-        cell.doseDisplay.text = "11.1"
-        cell.yieldDisplay.text = "22.2"
-        cell.timeDisplay.text = "33 sec"
-   
+        let ratio = round((allShots[allShots.count - indexPath.item - 1].yield / allShots[allShots.count - indexPath.item - 1].dose)*10)/10
+        
+        cell.doseDisplay.text = "\(allShots[allShots.count - indexPath.item - 1].dose)"
+        cell.yieldDisplay.text = "\(allShots[allShots.count - indexPath.item - 1].yield)"
+        cell.timeDisplay.text = "\(allShots[allShots.count - indexPath.item - 1].time) s"
+        cell.ratioDisplay.text = "\(ratio)"
+        cell.ratingDisplay.text = "\(allShots[allShots.count - indexPath.item - 1].rating)"
+        
         return cell
     }
     

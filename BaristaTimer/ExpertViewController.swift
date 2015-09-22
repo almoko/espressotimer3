@@ -83,15 +83,15 @@ class ExpertViewController: UIViewController {
         }
         
         timerDisplay.text = String(currentTimer)
-        if currentTimer == targetTimerSetting {
-            timerDisplay.textColor = UIColor.redColor()
-            //play final sound here
-        } else {
-             timerDisplay.textColor = myBrownColor
-        }
-        if currentTimer >= targetTimerSetting-3 && currentTimer < targetTimerSetting {
-            // play warning sounds here
-        }
+//        if currentTimer == targetTimerSetting {
+//            timerDisplay.textColor = UIColor.redColor()
+//            //play final sound here
+//        } else {
+//             timerDisplay.textColor = myBrownColor
+//        }
+//        if currentTimer >= targetTimerSetting-3 && currentTimer < targetTimerSetting {
+//            // play warning sounds here
+//        }
     }
     
     func stopTimer () {

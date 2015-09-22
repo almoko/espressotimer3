@@ -13,7 +13,9 @@ class ShotsSummaryTableViewCell: UITableViewCell {
     @IBOutlet weak var doseDisplay: UILabel!
     @IBOutlet weak var yieldDisplay: UILabel!
     @IBOutlet weak var timeDisplay: UILabel!
-
+    @IBOutlet weak var ratioDisplay: UILabel!
+    @IBOutlet weak var ratingDisplay: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
